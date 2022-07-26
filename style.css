@@ -1,3 +1,53 @@
 h1 {
     color:cornflowerblue
 }
+
+body {
+    background-color: #D95550;
+}
+
+.pomodoro {
+    margin: 0;
+    padding: 10rem;
+    background: #DD6662;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1rem;
+}
+
+.btn-app {
+    border: none;
+    color: white;
+    margin: 0px;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 2px 12px;
+    height: 28px;
+    cursor: pointer;
+    background: none;
+    box-shadow: none;
+    font-weight: 300;
+}
+
+.my-counter {}
+.my-counter p {
+    text-align: center;
+    font-size: 120px;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.start-btn {
+    padding: 0 50px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 65%;
+    left: 33%;
+    font-size: 2rem;
+    text-align: center;
+    color: #D95550;
+}
