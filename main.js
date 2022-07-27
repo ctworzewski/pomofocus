@@ -10,14 +10,22 @@ const paragr = document.querySelector('.paragraphTimer');
 myCounter.appendChild(paragr);
 
 
-let counter = 60;
+let counter = 11;
 function startTest() {
     updateCounter(counter--);
 }
 
 function updateCounter(count) {
-    paragr.innerHTML = `25:${counter}`;
-    clearInterval(stopTest);
+    if (counter < 10){
+        paragr.innerHTML = `25:0${counter}`;
+    } else {
+
+        paragr.innerHTML = `25:${counter}`;
+    }
+    if (counter === 0) {
+
+        clearInterval();
+    }
 }
 
 function stopTest() {
