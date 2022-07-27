@@ -3,36 +3,32 @@ console.log('Test');
 const startBtn = document.querySelector('.start-btn');
 const stopBtn = document.querySelector('.stop-btn');
 const myCounter = document.querySelector('.my-counter');
+const paragraphTimer = document.createElement('div');
 
-function startApp() {
-    let counter = 0;
-    const paragraphTimer = document.createElement('div');
-    // paragraphTimer.className('my-counter-paragraph');
-    for (let i = 0; i <= 59; i++) {
+const div = document.querySelector('.my-counter')
+myCounter.appendChild(paragraphTimer);
 
-        paragraphTimer.innerText = `Czas: ${i++}`;
-    }
-    // const div = document.querySelector('.my-counter')
-    myCounter.appendChild(paragraphTimer);
-    console.log('Test klikania');
 
-    // for (let i = 0; i>num; i--) {
-    //      if (num === 25) {
-    //         myCounter.innerHTML = num;
-    //         console.log('my counter to: ', myCounter)
-    //     }
-    //     console.log('pokaż numer: ', i)
-    //     myCounter.innerHTML = num;
-    // }   
-    
+let counter = 60;
+function startTest() {
+    updateCounter(counter--);
+}
+
+function updateCounter(count) {
+    paragraphTimer.innerHTML = counter;
 }
 
 function stopApp() {
-    clearInterval(startApp);
+    if (stopBtn) {
+        clearInterval(startTest);
+    }
 }
 
 //  setInterval(startApp, 1000);
-startBtn.addEventListener('click', startApp);
+ setInterval(startTest, 1000);
+// startBtn.addEventListener('click', startApp);
+startBtn.addEventListener('click', startTest);
+
 stopBtn.addEventListener('click', stopApp);
 
 
