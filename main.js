@@ -1,6 +1,7 @@
 console.log('Test');
 
 const startBtn = document.querySelector('.start-btn');
+const stopBtn = document.querySelector('.stop-btn');
 const myCounter = document.querySelector('.my-counter');
 
 function startApp() {
@@ -11,7 +12,7 @@ function startApp() {
     // const div = document.querySelector('.my-counter')
     myCounter.appendChild(paragraphTimer);
     console.log('Test klikania');
-    let num=25;
+
     for (let i = 0; i>num; i--) {
          if (num === 25) {
             myCounter.innerHTML = num;
@@ -23,8 +24,13 @@ function startApp() {
     
 }
 
+function stopApp() {
+    clearInterval(startApp);
+}
+
  setInterval(startApp, 1000);
 startBtn.addEventListener('click', startApp);
+stopBtn.addEventListener('click', stopApp);
 
 
 

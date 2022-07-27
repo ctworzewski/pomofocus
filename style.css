@@ -41,7 +41,7 @@ body {
     margin-top: 20px;
 }
 
-.start-btn {
+.start-btn, .stop-btn {
     padding: 0 50px;
     text-transform: uppercase;
     position: absolute;
@@ -50,4 +50,8 @@ body {
     font-size: 2rem;
     text-align: center;
     color: #D95550;
+}
+
+.stop-btn {
+    left: 70%;
 }
