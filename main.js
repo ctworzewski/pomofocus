@@ -14,7 +14,6 @@ function updateCounter(count) {
     if (counter >= 10){
         paragr.innerHTML = `25:${counter}`;
     } else if(counter<=10 && counter >= 0) {
-
         paragr.innerHTML = `25:0${counter}`;
     }
 
