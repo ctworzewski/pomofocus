@@ -9,7 +9,7 @@ let counterSec = 12;
 let counterMin = 12;
 function startTest() {
     updateCounter(counterSec--);
-    downCounterMinute(counterMin--);
+    // downCounterMinute(counterMin--);
 }
 function updateCounter(countSec) {
     if (counterSec >= 10){
