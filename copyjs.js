@@ -1,48 +1,34 @@
-console.log('Test');
-
 const startBtn = document.querySelector('.start-btn');
-const stopBtn = document.querySelector('.stop-btn');
+// const stopBtn = document.querySelector('.stop-btn');
 const myCounter = document.querySelector('.my-counter');
-// const paragraphTimer = document.createElement('.paragraphTimer');
 const paragr = document.querySelector('.paragraphTimer');
 
-// const div = document.querySelector('.my-counter')
 myCounter.appendChild(paragr);
 
-
-let counter = 11;
+let counterSec = 12;
+let counterMin = 12;
 function startTest() {
-    updateCounter(counter--);
+    updateCounter(counterSec--);
+    // downCounterMinute(counterMin--);
 }
-
-function updateCounter(count) {
-    if (counter < 10){
-        paragr.innerHTML = `25:0${counter}`;
+function updateCounter() {
+    if (counterSec >= 10){
+        paragr.innerHTML = `12:${counterSec}`;
+    } else if(counterSec <=10 && counterSec >= 0) {
+        
+        paragr.innerHTML = `12:0${counterSec}`;
     }
-    // } else {
+setTimeout(startTest, 1000);
+// setTimeout(downCounterMinute, 1000);
 
-        // paragr.innerHTML = `25:${counter}`;
-    // }
-    // if (counter === 0) {
-
-    //     clearInterval();
-    // }
 }
 
-// function stopTest() {
-//     counter = 0;
-//     return counter;
-// }
-
-// function stopApp() {
-//     if (stopBtn) {
-//         clearInterval(startTest);
+// function downCounterMinute(countMin) {
+//     if (counterMin <= 12) {
+//     paragr.innerHTML = `${counterMin}:00`;
+//     } else if (counterMin <= 12 && counterMin >=0) {
+//         paragr.innerHTML = `00:00`;
 //     }
 // }
 
-//  setInterval(startApp, 1000);
- setInterval(startTest, 1000);
-// startBtn.addEventListener('click', startApp);
 startBtn.addEventListener('click', startTest);
-
-// stopBtn.addEventListener('click', stopTest);
