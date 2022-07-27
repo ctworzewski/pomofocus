@@ -16,17 +16,9 @@ function updateCounter(count) {
     } else if(counter<=10 && counter >= 0) {
 
         paragr.innerHTML = `25:0${counter}`;
-        
     }
-//  if(counter === 0) {
-//         counter = 0;
-//         paragr.innerHTML = `25:0${counter}`;
-//         console.log('test');
-//     } else {
-//         return;
-//     }
+
+setTimeout(startTest, 1000);
 }
 
-
-setInterval(startTest, 1000);
 startBtn.addEventListener('click', startTest);
