@@ -5,7 +5,7 @@ const paragr = document.querySelector('.paragraphTimer');
 
 myCounter.appendChild(paragr);
 
-let counter = 59;
+let counter = 12;
 function startTest() {
     updateCounter(counter--);
     // counter = 0;
@@ -16,14 +16,17 @@ function updateCounter(count) {
     } else if(counter<10) {
 
         paragr.innerHTML = `25:0${counter}`;
-    } else if(counter === 0) {
-        counter = 0;
+        
     }
-    // if (counter <= 0) {
-    //     counter = 0;
-    //     paragr.innerHTML = `25:0${counter}`;
-    // }
-    // setInterval(startTest, 1000);
+ if(counter === 0 && counter >= 0) {
+        counter = 0;
+        paragr.innerHTML = `25:0${counter}`;
+        console.log('test');
+    } else {
+        return;
+    }
 }
+
+
 
 startBtn.addEventListener('click', startTest);
