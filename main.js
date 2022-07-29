@@ -17,7 +17,7 @@ function startTest() {
   updateCounter();
 }
 
-function updateCounterShortBreakBtnBtn() {
+function updateCounterShortBreakBtn() {
   counterSecBreak--;
   let startMinuteBreak = `${Math.floor(counterSecBreak / 60)}`;
   let startSecundeBreak = `${Math.floor(counterSecBreak % 60)}`;
@@ -26,7 +26,7 @@ function updateCounterShortBreakBtnBtn() {
   if (counterSecBreak <= 0) {
     return;
   }
-  intervalIdshortBreakBtn = setTimeout(updateCounterShortBreakBtnBtn, 1000);
+  intervalIdshortBreakBtn = setTimeout(updateCounterShortBreakBtn, 1000);
   document.body.style.backgroundColor = "#4C9195";
   console.log("test");
   shortBreakBtn.style.backgroundColor = "blue";
@@ -36,8 +36,7 @@ function updateCounter() {
   counterSec--;
   let startMinute = `${Math.floor(counterSec / 60)}`;
   let startSecunde = `${Math.floor(counterSec % 60)}`;
-  paragr.innerHTML = `${startMinute.padStart(2, "0")}:${startSecunde.padStar
-    (2, "0")}`;
+  paragr.innerHTML = `${startMinute.padStart(2, "0")}:${startSecunde.padStart(2, "0")}`;
   if (counterSec === 0) {
     return;
   }
@@ -51,7 +50,7 @@ function stopTest() {
 }
 
 function shortBreakBtnTest() {
-  updateCounterShortBreakBtnBtn();
+  updateCounterShortBreakBtn();
 }
 startBtn.addEventListener("click", startTest);
 stopBtn.addEventListener("click", stopTest);
