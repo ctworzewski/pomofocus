@@ -8,29 +8,44 @@ const pomodoroBox = document.querySelector('.pomodoro');
 myCounter.appendChild(paragr);
 
 let counterSec = 10;
+let counterSecBreak = 5;
 let intervalId;
+let intervalIdShortBreak;
 function startTest() {
 //    counterSec = 5;
   stopTest();
   updateCounter();
 }
+
+function updateCounterShortBreak() {
+    counterSecBreak--;
+    clearInterval(intervalIdShortBreak);
+    document.body.style.backgroundColor = '#4C9195';
+    counterSecBreak--;
+    console.log('test');
+    shortBreak.style.backgroundColor = 'blue';
+    let startMinuteBreak = `${Math.floor(counterSecBreak / 60)}`;
+    let startSecundeBreak = `${Math.floor(counterSecBreak % 60)}`;
+    paragr.innerHTML = `${startMinuteBreak.padStart(2, '0')}:${startSecundeBreak.padStart(2, '0')}`;
+    intervalIdShortBreak = setTimeout(updateCounter, 1000);
+
+    if (counterSecBreak === 0) {
+        return;
+    }
+
+}
+
 function updateCounter() {
     counterSec--;
     let startMinute = `${Math.floor(counterSec / 60)}`;
     let startSecunde = `${Math.floor(counterSec % 60)}`;
-  //   let test11 = `${Math.floor(counterSec / 60)}:${counterSec % 60}`;
     paragr.innerHTML = `${startMinute.padStart(2, '0')}:${startSecunde.padStart(2, '0')}`;
     if (counterSec === 0) {
       return;
     }
     intervalId = setTimeout(updateCounter, 1000);
 
-    if (stopBtn == 2) {
-        shortBreakTest();
-    }
-    else {
-        return;
-    }
+    
   }
 
 function stopTest() {
@@ -38,18 +53,8 @@ function stopTest() {
   clearTimeout(intervalId);
 }
 
-let counterSecBreak = 5;
 function shortBreakTest() {
-    document.body.style.backgroundColor = '#4C9195';
-    // document.body.pomodoroBox.style.backgroundColor = '#5E9CA0';
-    counterSecBreak--;
-    // startTest();
-    console.log('test');
-    shortBreak.style.backgroundColor = 'blue';
-    let startMinute = `${Math.floor(counterSecBreak / 60)}`;
-    let startSecunde = `${Math.floor(counterSecBreak % 60)}`;
-    // paragr.innerHTML = `${Math.floor(counterSecBreak / 60)}:${counterSecBreak % 60}`;
-    paragr.innerHTML = `${startMinute.padStart(2, '0')}:${startSecunde.padStart(2, '0')}`;
+    updateCounterShortBreak();
 
 }
 startBtn.addEventListener("click", startTest);

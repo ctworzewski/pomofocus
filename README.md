@@ -2,6 +2,7 @@
 
 Zrobić aplikacje POMODORO, po kliknięciu start - nastepuje odliczanie czasu.
 
+Aplikacja musi być podobna do tej: https://pomofocus.io/
 
 # Założenia są nastepujące:
 
