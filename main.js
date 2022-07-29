@@ -8,7 +8,7 @@ const pomodoroBox = document.querySelector('.pomodoro');
 myCounter.appendChild(paragr);
 
 let counterSec = 10;
-let counterSecBreak = 5;
+let counterSecBreak = 121;
 let intervalId;
 let intervalIdShortBreak;
 function startTest() {
@@ -25,11 +25,11 @@ function updateCounterShortBreak() {
     let startMinuteBreak = `${Math.floor(counterSecBreak / 60)}`;
     let startSecundeBreak = `${Math.floor(counterSecBreak % 60)}`;
     paragr.innerHTML = `${startMinuteBreak.padStart(2, '0')}:${startSecundeBreak.padStart(2, '0')}`;
-    intervalIdShortBreak = setTimeout(updateCounterShortBreak, 1000);
-
+    
     if (counterSecBreak <= 0) {
         return;
     }
+    intervalIdShortBreak = setTimeout(updateCounterShortBreak, 1000);
 
 }
 
