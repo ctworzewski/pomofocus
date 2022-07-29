@@ -7,14 +7,21 @@ const pomodoroBtn = document.querySelector(".pomodoro");
 
 myCounter.appendChild(paragr);
 
-let counterSec = 10;
-let counterSecBreak = 5;
+let counterSec = 11;
+let counterSecBreak = 6;
 let intervalId;
 let intervalIdshortBreakBtn;
 function startTest() {
-  //    counterSec = 10;
+  counterSec = 11;
   stopTest();
   updateCounter();
+}
+
+function startShortBreak() {
+  counterSecBreak = 6;
+  stopTest();
+  updateCounterShortBreakBtn();
+
 }
 
 function updateCounterShortBreakBtn() {
@@ -23,7 +30,7 @@ function updateCounterShortBreakBtn() {
   let startSecundeBreak = `${Math.floor(counterSecBreak % 60)}`;
   paragr.innerHTML = `${startMinuteBreak.padStart(2, "0")}:${startSecundeBreak.padStart(2, "0")}`;
 
-  if (counterSecBreak <= 0) {
+  if (counterSecBreak === 0) {
     return;
   }
   intervalIdshortBreakBtn = setTimeout(updateCounterShortBreakBtn, 1000);
@@ -52,6 +59,25 @@ function stopTest() {
 function shortBreakBtnTest() {
   updateCounterShortBreakBtn();
 }
+
+// skorzystałem ze źródła https://techstacker.com/count-number-of-clicks-on-an-element-with-javascript/
+// funkcja ma sprawdzać ilość kliknięć
+let manyClick = 0;
+const clicks = document.querySelector('.clicks');
+clicks.addEventListener('click', function() {
+  manyClick = manyClick + 1;
+  console.log(manyClick);
+
+  // na if'a sam wpadłem
+  if (manyClick === 2) {
+    shortBreakBtnTest();
+  }
+});
+
+// function howManyClickBtn() {
+//   console.log('ile kliknięć? : ', manyClick.values);
+  
+// }
 startBtn.addEventListener("click", startTest);
 stopBtn.addEventListener("click", stopTest);
 
