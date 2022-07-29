@@ -2,26 +2,23 @@ const startBtn = document.querySelector(".start-btn");
 const stopBtn = document.querySelector(".stop-btn");
 const myCounter = document.querySelector(".my-counter");
 const paragr = document.querySelector(".paragraphTimer");
-const shortBreak = document.querySelector('.short-break-btn');
-const pomodoroBox = document.querySelector('.pomodoro');
+const shortBreakBtn = document.querySelector('.short-break-btn');
+const pomodoroBtn = document.querySelector('.pomodoro');
 
 myCounter.appendChild(paragr);
 
 let counterSec = 10;
-let counterSecBreak = 121;
+let counterSecBreak = 5;
 let intervalId;
-let intervalIdShortBreak;
+let intervalIdshortBreakBtn;
 function startTest() {
-//    counterSec = 5;
+//    counterSec = 10;
   stopTest();
   updateCounter();
 }
 
-function updateCounterShortBreak() {
+function updateCounterShortBreakBtnBtn() {
     counterSecBreak--;
-    document.body.style.backgroundColor = '#4C9195';
-    console.log('test');
-    shortBreak.style.backgroundColor = 'blue';
     let startMinuteBreak = `${Math.floor(counterSecBreak / 60)}`;
     let startSecundeBreak = `${Math.floor(counterSecBreak % 60)}`;
     paragr.innerHTML = `${startMinuteBreak.padStart(2, '0')}:${startSecundeBreak.padStart(2, '0')}`;
@@ -29,7 +26,10 @@ function updateCounterShortBreak() {
     if (counterSecBreak <= 0) {
         return;
     }
-    intervalIdShortBreak = setTimeout(updateCounterShortBreak, 1000);
+    intervalIdshortBreakBtn = setTimeout(updateCounterShortBreakBtnBtn, 1000);
+    document.body.style.backgroundColor = '#4C9195';
+    console.log('test');
+    shortBreakBtn.style.backgroundColor = 'blue';
 
 }
 
@@ -49,15 +49,15 @@ function updateCounter() {
 function stopTest() {
     // counterSec = 10;
   clearTimeout(intervalId);
-  clearInterval(intervalIdShortBreak);
+  clearInterval(intervalIdshortBreakBtn);
 
 }
 
-function shortBreakTest() {
-    updateCounterShortBreak();
+function shortBreakBtnTest() {
+    updateCounterShortBreakBtnBtn();
 
 }
 startBtn.addEventListener("click", startTest);
 stopBtn.addEventListener("click", stopTest);
 
-shortBreak.addEventListener('click', shortBreakTest);
+shortBreakBtn.addEventListener('click', shortBreakBtnTest);
