@@ -15,6 +15,7 @@ function startTest() {
   counterSec = 11;
   stopTest();
   updateCounter();
+  playMusic();
 }
 
 function startShortBreak() {
@@ -48,6 +49,13 @@ function updateCounter() {
     return;
   }
   intervalId = setTimeout(updateCounter, 1000);
+
+
+}
+
+function playMusic() {
+  let audioTest = new Audio('./sources/music.mp3');
+  audioTest.play();
 }
 
 function stopTest() {
