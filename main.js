@@ -3,7 +3,7 @@ const stopBtn = document.querySelector(".stop-btn");
 const myCounter = document.querySelector(".my-counter");
 const paragr = document.querySelector(".paragraphTimer");
 const shortBreakBtn = document.querySelector(".short-break-btn");
-const pomodoroBtn = document.querySelector(".pomodoro");
+const pomodoroBtn = document.querySelector(".pomodoro-btn");
 
 myCounter.appendChild(paragr);
 
@@ -11,11 +11,24 @@ let counterSec = 11;
 let counterSecBreak = 6;
 let intervalId;
 let intervalIdshortBreakBtn;
+function changeActivColor() {
+  if (pomodoroBtn) {
+    // pomodoroBtn.classList.toggle('.pomodoro-btn');
+    pomodoroBtn.style.backgroundColor = "green";
+  } else {
+    pomodoroBtn.style.backgroundColor = "transparent";
+  }
+}
+changeActivColor();
+
+// pomodoroBtn.style.backgroundColor = "blue";
 function startTest() {
+    // document.body.classList.toggle('pomodoro-btn');
+console.log(pomodoroBtn);
   counterSec = 11;
   stopTest();
   updateCounter();
-  playMusic();
+  // playMusic();
 }
 
 function startShortBreak() {
@@ -26,7 +39,7 @@ function startShortBreak() {
 }
 
 function updateCounterShortBreakBtn() {
-  counterSecBreak--;
+  // counterSecBreak--;
   let startMinuteBreak = `${Math.floor(counterSecBreak / 60)}`;
   let startSecundeBreak = `${Math.floor(counterSecBreak % 60)}`;
   paragr.innerHTML = `${startMinuteBreak.padStart(2, "0")}:${startSecundeBreak.padStart(2, "0")}`;
@@ -53,18 +66,16 @@ function updateCounter() {
 
 }
 
-function playMusic() {
-  let audioTest = new Audio('./sources/music.mp3');
-  audioTest.play();
-}
 
 function stopTest() {
-  // counterSec = 10;
   clearTimeout(intervalId);
   clearInterval(intervalIdshortBreakBtn);
 }
 
 function shortBreakBtnTest() {
+  if (counterSecBreak === 0) {
+    return;
+  }
   updateCounterShortBreakBtn();
 }
 
@@ -75,18 +86,25 @@ const clicks = document.querySelector('.clicks');
 clicks.addEventListener('click', function() {
   manyClick = manyClick + 1;
   console.log(manyClick);
-
+  
   // na if'a sam wpadłem
   if (manyClick === 2) {
     shortBreakBtnTest();
   }
 });
 
-// function howManyClickBtn() {
-//   console.log('ile kliknięć? : ', manyClick.values);
+  startBtn.addEventListener("click", startTest);
+  stopBtn.addEventListener("click", stopTest);
   
-// }
-startBtn.addEventListener("click", startTest);
-stopBtn.addEventListener("click", stopTest);
-
-shortBreakBtn.addEventListener("click", shortBreakBtnTest);
+  shortBreakBtn.addEventListener("click", shortBreakBtnTest);
+  
+  // function playMusic() {
+  //   let audioTest = new Audio('./sources/music.mp3');
+  //   if (startBtn) {
+  //     audioTest.play();
+  
+  //   }
+  //   else if (stopBtn) {
+  //     audioTest.pause();
+  //   }
+  // }

@@ -18,6 +18,10 @@ body {
     border-radius: 1rem;
 }
 
+.pomodoro-btn {
+    /* background-color: green; */
+}
+
 .btn-app {
     border: none;
     color: white;
