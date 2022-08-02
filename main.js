@@ -7,12 +7,20 @@ const pomodoroBtn = document.querySelector(".pomodoro-btn");
 
 myCounter.appendChild(paragr);
 
-let counterSec = 11;
+const POMODORO_TIME = 5;
+
+let counterSec = POMODORO_TIME;
 let counterSecBreak = 6;
 let intervalId;
 let intervalIdshortBreakBtn;
 
 let lastActiveButton;
+
+
+changeActiveColor(pomodoroBtn);
+renderCurrentTime();
+
+
 function changeActiveColor(activeButton) {
   if (lastActiveButton !== undefined && lastActiveButton !== activeButton) {
     lastActiveButton.classList.remove("active");
@@ -20,21 +28,19 @@ function changeActiveColor(activeButton) {
   activeButton.classList.add("active");
   lastActiveButton = activeButton;
 }
-changeActiveColor(pomodoroBtn);
 
-// pomodoroBtn.style.backgroundColor = "blue";
-function startTest() {
-  // document.body.classList.toggle('pomodoro-btn');
-  console.log(pomodoroBtn);
-  counterSec = 11;
-  stopTest();
-  updateCounter();
-  // playMusic();
+
+function startTimer() {
+  counterSec = POMODORO_TIME;
+  stopTimer();
+  renderCurrentTime();
+  scheduleTimeUpdate();
+  playMusic();
 }
 
 function startShortBreak() {
   counterSecBreak = 6;
-  stopTest();
+  stopTimer();
   updateCounterShortBreakBtn();
 }
 
@@ -54,21 +60,29 @@ function updateCounterShortBreakBtn() {
   document.body.style.backgroundColor = "#4C9195";
 }
 
-function updateCounter() {
-  counterSec--;
+function renderCurrentTime() {
   let startMinute = `${Math.floor(counterSec / 60)}`;
   let startSecunde = `${Math.floor(counterSec % 60)}`;
   paragr.innerHTML = `${startMinute.padStart(2, "0")}:${startSecunde.padStart(
     2,
     "0"
   )}`;
-  if (counterSec === 0) {
-    return;
-  }
+}
+
+function scheduleTimeUpdate() {
   intervalId = setTimeout(updateCounter, 1000);
 }
 
-function stopTest() {
+function updateCounter() {
+  counterSec--;
+  renderCurrentTime();
+  if (counterSec === 0) {
+    return;
+  }
+  scheduleTimeUpdate();
+}
+
+function stopTimer() {
   clearTimeout(intervalId);
   clearInterval(intervalIdshortBreakBtn);
 }
@@ -83,6 +97,7 @@ function shortBreakBtnTest() {
 
 // skorzystałem ze źródła https://techstacker.com/count-number-of-clicks-on-an-element-with-javascript/
 // funkcja ma sprawdzać ilość kliknięć
+
 let manyClick = 0;
 const clicks = document.querySelector(".clicks");
 clicks.addEventListener("click", function () {
@@ -95,18 +110,18 @@ clicks.addEventListener("click", function () {
   }
 });
 
-startBtn.addEventListener("click", startTest);
-stopBtn.addEventListener("click", stopTest);
+startBtn.addEventListener("click", startTimer);
+stopBtn.addEventListener("click", stopTimer);
 
 shortBreakBtn.addEventListener("click", shortBreakBtnTest);
 
-// function playMusic() {
-//   let audioTest = new Audio('./sources/music.mp3');
-//   if (startBtn) {
-//     audioTest.play();
-
-//   }
-//   else if (stopBtn) {
-//     audioTest.pause();
-//   }
-// }
+let audioTest;
+function playMusic() {
+  audioTest = audioTest || new Audio("./sources/music.mp3");
+  if (startBtn) {
+    audioTest.play();
+  } else if (stopBtn) {
+    audioTest.pause();
+    audioTest.currentTime = 0;
+  }
+}
