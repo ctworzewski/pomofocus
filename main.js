@@ -1,3 +1,5 @@
+import { playMusic } from "./src/audio.js";
+
 const startBtn = document.querySelector(".start-btn");
 const stopBtn = document.querySelector(".stop-btn");
 const myCounter = document.querySelector(".my-counter");
@@ -115,13 +117,3 @@ stopBtn.addEventListener("click", stopTimer);
 
 shortBreakBtn.addEventListener("click", shortBreakBtnTest);
 
-let audioTest;
-function playMusic() {
-  audioTest = audioTest || new Audio("./sources/music.mp3");
-  if (startBtn) {
-    audioTest.play();
-  } else if (stopBtn) {
-    audioTest.pause();
-    audioTest.currentTime = 0;
-  }
-}
