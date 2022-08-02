@@ -11,15 +11,21 @@ let counterSec = 11;
 let counterSecBreak = 6;
 let intervalId;
 let intervalIdshortBreakBtn;
-function changeActivColor() {
-  if (pomodoroBtn) {
-    // pomodoroBtn.classList.toggle('.pomodoro-btn');
-    pomodoroBtn.style.backgroundColor = "green";
-  } else {
-    pomodoroBtn.style.backgroundColor = "transparent";
+
+let lastActiveButton;
+const colors = new Map();
+colors.set(pomodoroBtn, 'green');
+colors.set(shortBreakBtn, 'blue');
+
+function changeActiveColor(activeButton) {
+  if (lastActiveButton !== undefined && lastActiveButton !== activeButton) {
+    lastActiveButton.style.backgroundColor = "transparent";
   }
+  const color = colors.get(activeButton);
+  activeButton.style.backgroundColor = color;
+  lastActiveButton = activeButton;
 }
-changeActivColor();
+changeActiveColor(pomodoroBtn);
 
 // pomodoroBtn.style.backgroundColor = "blue";
 function startTest() {
@@ -49,8 +55,6 @@ function updateCounterShortBreakBtn() {
   }
   intervalIdshortBreakBtn = setTimeout(updateCounterShortBreakBtn, 1000);
   document.body.style.backgroundColor = "#4C9195";
-  console.log("test");
-  shortBreakBtn.style.backgroundColor = "blue";
 }
 
 function updateCounter() {
@@ -77,6 +81,7 @@ function shortBreakBtnTest() {
     return;
   }
   updateCounterShortBreakBtn();
+  changeActiveColor(shortBreakBtn);
 }
 
 // skorzystałem ze źródła https://techstacker.com/count-number-of-clicks-on-an-element-with-javascript/
