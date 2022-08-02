@@ -59,3 +59,10 @@ body {
 .stop-btn {
     left: 70%;
 }
+
+.pomodoro-btn.active {
+  background: green;
+}
+.short-break-btn.active {
+  background: blue;
+}

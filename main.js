@@ -13,16 +13,11 @@ let intervalId;
 let intervalIdshortBreakBtn;
 
 let lastActiveButton;
-const colors = new Map();
-colors.set(pomodoroBtn, 'green');
-colors.set(shortBreakBtn, 'blue');
-
 function changeActiveColor(activeButton) {
   if (lastActiveButton !== undefined && lastActiveButton !== activeButton) {
-    lastActiveButton.style.backgroundColor = "transparent";
+    lastActiveButton.classList.remove('active')
   }
-  const color = colors.get(activeButton);
-  activeButton.style.backgroundColor = color;
+  activeButton.classList.add('active');
   lastActiveButton = activeButton;
 }
 changeActiveColor(pomodoroBtn);
