@@ -1,4 +1,5 @@
 import { playMusic } from "./src/audio.js";
+import { changeActiveColor } from "./src/changeColor.js";
 
 const startBtn = document.querySelector(".start-btn");
 const stopBtn = document.querySelector(".stop-btn");
@@ -16,20 +17,20 @@ let counterSecBreak = 6;
 let intervalId;
 let intervalIdshortBreakBtn;
 
-let lastActiveButton;
+// let lastActiveButton;
 
 
-changeActiveColor(pomodoroBtn);
+// changeActiveColor(pomodoroBtn);
 renderCurrentTime();
 
 
-function changeActiveColor(activeButton) {
-  if (lastActiveButton !== undefined && lastActiveButton !== activeButton) {
-    lastActiveButton.classList.remove("active");
-  }
-  activeButton.classList.add("active");
-  lastActiveButton = activeButton;
-}
+// function changeActiveColor(activeButton) {
+//   if (lastActiveButton !== undefined && lastActiveButton !== activeButton) {
+//     lastActiveButton.classList.remove("active");
+//   }
+//   activeButton.classList.add("active");
+//   lastActiveButton = activeButton;
+// }
 
 
 function startTimer() {
