@@ -66,3 +66,7 @@ body {
 .short-break-btn.active {
   background: blue;
 }
+
+.long-break-btn.active {
+    background-color: coral;
+}

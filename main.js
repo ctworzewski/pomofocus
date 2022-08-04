@@ -1,5 +1,5 @@
 import { playMusic } from "./src/audio.js";
-import { changeActiveColor } from "./src/changeColor.js";
+// import { changeActiveColor } from "./src/changeColor.js";
 
 const startBtn = document.querySelector(".start-btn");
 const stopBtn = document.querySelector(".stop-btn");
@@ -17,20 +17,22 @@ let counterSecBreak = 6;
 let intervalId;
 let intervalIdshortBreakBtn;
 
-// let lastActiveButton;
+let lastActiveButton;
 
 
-// changeActiveColor(pomodoroBtn);
+changeActiveColor(pomodoroBtn);
 renderCurrentTime();
 
 
-// function changeActiveColor(activeButton) {
-//   if (lastActiveButton !== undefined && lastActiveButton !== activeButton) {
-//     lastActiveButton.classList.remove("active");
-//   }
-//   activeButton.classList.add("active");
-//   lastActiveButton = activeButton;
-// }
+function changeActiveColor(activeButton) {
+  if (lastActiveButton !== undefined && lastActiveButton !== activeButton) {
+    lastActiveButton.classList.remove("active");
+  }
+  activeButton.classList.add("active");
+  lastActiveButton = activeButton;
+}
+
+
 
 
 function startTimer() {
@@ -45,6 +47,12 @@ function startShortBreak() {
   counterSecBreak = 6;
   stopTimer();
   updateCounterShortBreakBtn();
+}
+
+function startLongBreak() {
+  counterSecLong = 15;
+  stopTimer();
+  upda
 }
 
 function updateCounterShortBreakBtn() {
@@ -98,23 +106,32 @@ function shortBreakBtnTest() {
   changeActiveColor(shortBreakBtn);
 }
 
+function longBreakBtnTest() {
+  if (counterSecBreak === 0) {
+    return;
+  }
+  updateCounterShortBreakBtn();
+  changeActiveColor(longBreakBtn);
+}
 // skorzystałem ze źródła https://techstacker.com/count-number-of-clicks-on-an-element-with-javascript/
 // funkcja ma sprawdzać ilość kliknięć
 
-let manyClick = 0;
-const clicks = document.querySelector(".clicks");
-clicks.addEventListener("click", function () {
-  manyClick = manyClick + 1;
-  console.log(manyClick);
+// let manyClick = 0;
+// const clicks = document.querySelector(".clicks");
+// clicks.addEventListener("click", function () {
+//   manyClick = manyClick + 1;
+//   console.log(manyClick);
 
-  // na if'a sam wpadłem
-  if (manyClick === 2) {
-    shortBreakBtnTest();
-  }
-});
+//   // na if'a sam wpadłem
+//   if (manyClick === 2) {
+//     shortBreakBtnTest();
+//   }
+// });
+
 
 startBtn.addEventListener("click", startTimer);
 stopBtn.addEventListener("click", stopTimer);
 
 shortBreakBtn.addEventListener("click", shortBreakBtnTest);
+longBreakBtn.addEventListener('click',  longBreakBtnTest);
 

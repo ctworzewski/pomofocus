@@ -1,8 +1,6 @@
 let lastActiveButton;
-{
-  let lastActiveButton = 'test F2';
-}
-// changeActiveColor(pomodoroBtn);
+
+ changeActiveColor(pomodoroBtn);
 export function changeActiveColor(activeButton) {
   if (lastActiveButton !== undefined && lastActiveButton !== activeButton) {
     lastActiveButton.classList.remove("active");
