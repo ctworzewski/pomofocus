@@ -11,15 +11,15 @@
 <body>
     <h1>Pomofocus</h1>
     
-    <div class="pomodoro">
+    <div class="pomodoro" data-app="pomodoro">
         <div class="section-three-btn">
-            <button class="btn-app pomodoro-btn">Pomodoro</button>
-            <button class="btn-app short-break-btn">Short Break</button>
-            <button class="btn-app long-break-btn">Long Break</button>
+            <button class="btn-app pomodoro-btn" data-action="POMODORO">Pomodoro</button>
+            <button class="btn-app short-break-btn" data-action="SHORT_BREAK">Short Break</button>
+            <button class="btn-app long-break-btn" data-action="LONG_BREAK">Long Break</button>
         </div>
-        <div class="my-counter"><p class="paragraphTimer"></p></div>
-        <button class="start-btn">Start</button>
-        <button class="stop-btn clicks">Stop</button>
+        <div class="my-counter"><p class="paragraphTimer" data-display="TIME"></p></div>
+        <button class="start-btn" data-action="START">Start</button>
+        <button class="stop-btn clicks" data-action="STOP">Stop</button>
     </div>
     
     

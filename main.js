@@ -1,61 +1,108 @@
-// import { playMusic } from "./src/audio.js";
-import { changeActiveColor } from "./src/changeColor.js";
-const startBtn = document.querySelector(".start-btn");
-const stopBtn = document.querySelector(".stop-btn");
-const myCounter = document.querySelector(".my-counter");
-const paragr = document.querySelector(".paragraphTimer");
-const shortBreakBtn = document.querySelector(".short-break-btn");
-const pomodoroBtn = document.querySelector(".pomodoro-btn");
-myCounter.appendChild(paragr);
-const POMODORO_TIME = 5;
-let counterSec = POMODORO_TIME;
-let counterSecBreak = 6;
-// let intervalId;
-let intervalIdShort;
-changeActiveColor(pomodoroBtn);
-renderCurrentTime();
+const $ = document.querySelector.bind(document);
+
+const setup = {
+  POMODORO: 25 * 60,
+  SHORT_BREAK: 5 * 60,
+  LONG_BREAK: 15 * 60,
+}
+
+let currentModeName;
+let remainingTime;
+let intervalId;
+
+const appNode = $('[data-app="pomodoro"]');
+const timeNode = $('[data-display="TIME"]');
+
+appNode.addEventListener('click', handleClick);
+
+switchMode("POMODORO");
+
+function handleClick(event) {
+  console.log(event.target.dataset);
+  const action = event.target.dataset.action;
+  
+  switch(action) {
+    case "START":
+    	startTimer();
+      break;
+    case "STOP":
+      stopTimer();
+      break;
+    case "POMODORO":
+      switchMode("POMODORO");
+      break;
+    case "SHORT_BREAK":
+      switchMode("SHORT_BREAK")
+      break;
+    case "LONG_BREAK":
+      switchMode("LONG_BREAK");
+      break;
+    default:
+      return;
+  }
+}
+
+function switchMode(modeName) {
+  stopTimer();
+  if (currentModeName) {
+    deactivateModeTab(currentModeName);
+  }
+
+  currentModeName = modeName;
+  resetTime(currentModeName);
+  activateModeTab(currentModeName);
+}
+
+function activateModeTab(modeName) {
+  $(`[data-action="${modeName}"]`).classList.add('active');
+}
+
+function deactivateModeTab(modeName) {
+  $(`[data-action="${modeName}"]`).classList.remove('active')
+}
+
+function resetTime(modeName) {
+  remainingTime = setup[modeName];
+  renderRemainingTime();
+}
 
 function startTimer() {
-  counterSec = POMODORO_TIME;
-  stopTimer();
-  renderCurrentTime();
-  scheduleTimeUpdate();
-  // playMusic();
+	scheduleTimeUpdate();
 }
-function updateCounterShort() {
-  let startMinuteBreak = `${Math.floor(counterSecBreak / 60)}`;
-  let startSecundeBreak = `${Math.floor(counterSecBreak % 60)}`;
-  paragr.innerHTML = `${startMinuteBreak.padStart(2,"0")}:${startSecundeBreak.padStart(2, "0")}`;
-  if (counterSecBreak === 0) {return;}
-  intervalIdShort = setTimeout(updateCounterShort, 1000);
-  document.body.style.backgroundColor = "#4C9195";
-}
-function renderCurrentTime() {
-  let startMinute = `${Math.floor(counterSec / 60)}`;
-  let startSecunde = `${Math.floor(counterSec % 60)}`;
-  paragr.innerHTML = `${startMinute.padStart(2, "0")}:${startSecunde.padStart(
-    2,"0")}`;
-}
-function scheduleTimeUpdate() {
-  intervalId = setTimeout(updateCounter, 1000);
-}
-function updateCounter() {
-  counterSec--;
-  renderCurrentTime();
-  if (counterSec === 0) {
-    return;
-  }
-  scheduleTimeUpdate();
-}
+
 function stopTimer() {
+  cancelTimeUpdate();
+}
+
+function renderRemainingTime() {
+  timeNode.textContent = formatTime(remainingTime);
+}
+
+function formatTime(time) {
+  const minutes = `${Math.floor(time / 60)}`;
+  const seconds = `${Math.floor(time % 60)}`;
+  
+  return `${minutes.padStart(2, "0")}:${seconds.padStart(2,"0")}`
+}
+
+
+function scheduleTimeUpdate() {
+  intervalId = setTimeout(updateTimer, 1000)
+}
+
+function cancelTimeUpdate() {
   clearTimeout(intervalId);
-  clearInterval(intervalIdShort);
 }
-function shortBreakBtnTest() {
-  if (counterSecBreak === 0) {return;}
-  updateCounterShort();
-  changeActiveColor(shortBreakBtn);
+
+
+function updateTimer() {
+	decreaseRemainingTimeByOneSecond();
+  renderRemainingTime();
+  scheduleTimeUpdate();
 }
-startBtn.addEventListener("click", startTimer);
-stopBtn.addEventListener("click", stopTimer);
-shortBreakBtn.addEventListener("click", shortBreakBtnTest);
+
+function decreaseRemainingTimeByOneSecond() {
+  remainingTime--;
+}
+
+  
