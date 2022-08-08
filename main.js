@@ -4,7 +4,7 @@ const setup = {
   POMODORO: 25 * 60,
   SHORT_BREAK: 5 * 60,
   LONG_BREAK: 15 * 60,
-}
+};
 
 let currentModeName;
 let remainingTime;
@@ -13,17 +13,17 @@ let intervalId;
 const appNode = $('[data-app="pomodoro"]');
 const timeNode = $('[data-display="TIME"]');
 
-appNode.addEventListener('click', handleClick);
+appNode.addEventListener("click", handleClick);
 
 switchMode("POMODORO");
 
 function handleClick(event) {
   console.log(event.target.dataset);
   const action = event.target.dataset.action;
-  
-  switch(action) {
+
+  switch (action) {
     case "START":
-    	startTimer();
+      startTimer();
       break;
     case "STOP":
       stopTimer();
@@ -32,7 +32,7 @@ function handleClick(event) {
       switchMode("POMODORO");
       break;
     case "SHORT_BREAK":
-      switchMode("SHORT_BREAK")
+      switchMode("SHORT_BREAK");
       break;
     case "LONG_BREAK":
       switchMode("LONG_BREAK");
@@ -54,11 +54,11 @@ function switchMode(modeName) {
 }
 
 function activateModeTab(modeName) {
-  $(`[data-action="${modeName}"]`).classList.add('active');
+  $(`[data-action="${modeName}"]`).classList.add("active");
 }
 
 function deactivateModeTab(modeName) {
-  $(`[data-action="${modeName}"]`).classList.remove('active')
+  $(`[data-action="${modeName}"]`).classList.remove("active");
 }
 
 function resetTime(modeName) {
@@ -67,7 +67,7 @@ function resetTime(modeName) {
 }
 
 function startTimer() {
-	scheduleTimeUpdate();
+  scheduleTimeUpdate();
 }
 
 function stopTimer() {
@@ -81,12 +81,13 @@ function renderRemainingTime() {
 function formatTime(time) {
   const minutes = `${Math.floor(time / 60)}`;
   const seconds = `${Math.floor(time % 60)}`;
-  
-  return `${minutes.padStart(2, "0")}:${seconds.padStart(2,"0")}`
+  const milsec = `${Math.floor(seconds / 500)}`;
+
+  return `${minutes.padStart(2, "0")}:${seconds.padStart(2, "0")}:${milsec.padStart(3,"0")}`;
 }
 
 function scheduleTimeUpdate() {
-  intervalId = setTimeout(updateTimer, 1000)
+  intervalId = setTimeout(updateTimer, 1000);
 }
 
 function cancelTimeUpdate() {
@@ -94,7 +95,7 @@ function cancelTimeUpdate() {
 }
 
 function updateTimer() {
-	decreaseRemainingTimeByOneSecond();
+  decreaseRemainingTimeByOneSecond();
   renderRemainingTime();
   scheduleTimeUpdate();
 }
