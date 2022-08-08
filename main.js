@@ -85,7 +85,6 @@ function formatTime(time) {
   return `${minutes.padStart(2, "0")}:${seconds.padStart(2,"0")}`
 }
 
-
 function scheduleTimeUpdate() {
   intervalId = setTimeout(updateTimer, 1000)
 }
@@ -93,7 +92,6 @@ function scheduleTimeUpdate() {
 function cancelTimeUpdate() {
   clearTimeout(intervalId);
 }
-
 
 function updateTimer() {
 	decreaseRemainingTimeByOneSecond();
@@ -104,5 +102,3 @@ function updateTimer() {
 function decreaseRemainingTimeByOneSecond() {
   remainingTime--;
 }
-
-  
