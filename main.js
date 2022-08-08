@@ -1,7 +1,7 @@
 const $ = document.querySelector.bind(document);
 
 const setup = {
-  POMODORO: 25 * 60,
+  POMODORO: (25 * 60)*1000,
   SHORT_BREAK: 5 * 60,
   LONG_BREAK: 15 * 60,
 }
@@ -80,9 +80,9 @@ function renderRemainingTime() {
 
 function formatTime(time) {
   const minutes = `${Math.floor(time / 60)}`;
-  const seconds = `${Math.floor(time % 60)}`;
+  const seconds = `${Math.floor((time % 6000)/1000)}`;
   
-  return `${minutes.padStart(2, "0")}:${seconds.padStart(2,"0")}`
+  return `${minutes.padStart(2, "0")}:${seconds.padStart(4,"0")}`
 }
 
 
