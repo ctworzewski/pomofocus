@@ -90,6 +90,10 @@ function scheduleTimeUpdate() {
   intervalId = setTimeout(updateTimer, 1000);
 }
 
+function updateMilisecond() {
+  intervalId = setTimeout(updateTimer, 500);
+}
+
 function cancelTimeUpdate() {
   clearTimeout(intervalId);
 }
@@ -98,6 +102,7 @@ function updateTimer() {
   decreaseRemainingTimeByOneSecond();
   renderRemainingTime();
   scheduleTimeUpdate();
+  // updateMilisecond();
 }
 
 function decreaseRemainingTimeByOneSecond() {
