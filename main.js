@@ -2,7 +2,11 @@ const $ = document.querySelector.bind(document);
 
 // Time in milliseconds
 const setup = {
+<<<<<<< HEAD
   POMODORO: 5 * 1000, 
+=======
+  POMODORO: 10 * 1000, 
+>>>>>>> 4eeca981550d847d9b4b1882499b2143c11be16c
   SHORT_BREAK: 2 * 1000,
   LONG_BREAK: 4 * 1000,
 }
@@ -79,6 +83,7 @@ function stopTimer() {
 
 function timerIsRunning() {
   return animationFrameId !== undefined;
+<<<<<<< HEAD
 }
 
 function renderRemainingTime() {
@@ -117,3 +122,39 @@ function decreaseRemainingTime() {
   remainingTime = Math.max(0, remainingTime - elapsedTime);
   lastUpdate = now;
 }
+=======
+}
+
+function renderRemainingTime() {
+  timeNode.textContent = formatTime(remainingTime);
+}
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60000).toString();
+  const rest = Math.floor(time % 60000);
+  const seconds = Math.floor(rest / 1000).toString();
+  const milliseconds = Math.floor(rest % 1000).toString();
+  return `${minutes.padStart(2, "0")}:${seconds.padStart(2,"0")}:${milliseconds.padStart(3, "0")}`
+}
+
+function scheduleTimeUpdate() {
+  animationFrameId = requestAnimationFrame(updateTimer)
+}
+
+function cancelTimeUpdate() {
+  cancelAnimationFrame(animationFrameId);
+  animationFrameId = undefined;
+}
+
+function updateTimer() {
+	decreaseRemainingTime();
+  renderRemainingTime();
+  scheduleTimeUpdate();
+}
+function decreaseRemainingTime() {
+  const now = Date.now();
+  const elapsedTime = now - lastUpdate;
+  remainingTime = Math.max(0, remainingTime - elapsedTime);
+  lastUpdate = now;
+} 
+>>>>>>> 4eeca981550d847d9b4b1882499b2143c11be16c

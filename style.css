@@ -54,4 +54,26 @@ body {
 }
 .long-break-btn.active {
   background-color: coral;
+<<<<<<< HEAD
+=======
+}
+
+.pomodoro-indicators {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.indicator {
+  background: white;
+  opacity: 0.5;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+.indicator.active {
+  opacity: 1;
+>>>>>>> 4eeca981550d847d9b4b1882499b2143c11be16c
 }
