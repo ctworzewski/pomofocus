@@ -4,22 +4,16 @@ h1 {
 
 body {
     background-color: #D95550;
+    display: flex;
 }
+
+
 
 .pomodoro {
     margin: 0;
-    padding: 10rem;
+    padding: 2rem;
     background: #DD6662;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
     border-radius: 1rem;
-}
-
-.pomodoro-btn {
-    /* background-color: green; */
 }
 
 .btn-app {
@@ -28,36 +22,28 @@ body {
     margin: 0px;
     border-radius: 4px;
     font-size: 16px;
-    padding: 2px 12px;
-    height: 28px;
+    padding: 5px 12px;
     cursor: pointer;
     background: none;
     box-shadow: none;
     font-weight: 300;
 }
 
-.my-counter {}
 .my-counter p {
     text-align: center;
-    font-size: 120px;
     color: white;
     font-weight: bold;
-    margin-top: 20px;
+    font: 40px/1 monospace;
 }
 
 .start-btn, .stop-btn {
-    padding: 0 50px;
+    padding: 10px 50px;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1.2rem;
     text-transform: uppercase;
-    position: absolute;
-    top: 65%;
-    left: 33%;
-    font-size: 2rem;
     text-align: center;
     color: #D95550;
-}
-
-.stop-btn {
-    left: 70%;
 }
 
 .pomodoro-btn.active {
@@ -66,7 +52,6 @@ body {
 .short-break-btn.active {
   background: blue;
 }
-
 .long-break-btn.active {
-    background-color: coral;
+  background-color: coral;
 }
