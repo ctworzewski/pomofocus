@@ -70,6 +70,7 @@ function resetTime(modeName) {
 
 function startTimer() {
   lastUpdate = Date.now();
+  console.log(lastUpdate);
 	scheduleTimeUpdate();
 }
 
@@ -95,7 +96,8 @@ function formatTime(time) {
 }
 
 function scheduleTimeUpdate() {
-  animationFrameId = requestAnimationFrame(updateTimer)
+  animationFrameId = requestAnimationFrame(updateTimer);
+  console.log('test', animationFrameId);
 }
 
 function cancelTimeUpdate() {
